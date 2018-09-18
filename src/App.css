@@ -1,0 +1,128 @@
+body {
+	margin:0;
+  padding:0;
+  background: #F8F8F8;
+}
+
+.container {
+	clear:left;
+	float:left;
+	width:100%;
+  overflow:hidden;
+  background: #F8F8F8; /* column 2 background colour */
+  color: #333;
+}
+
+.main {
+  float:left;
+	width:100%;
+	position: relative;
+  right:70%;
+  height: 100%;
+  background:indianred; /* column 1 background colour */
+}
+
+.left {
+	float:left;
+	width:28%;
+	position:relative;
+	left:71%;
+  overflow:hidden;
+  color: #f8f8f8;
+}
+
+.right {
+	float:left;
+	width:68%;
+	position:relative;
+	left:73%;
+  overflow:hidden;
+  padding-top: 10px;
+}
+
+.loading {
+  float: right;
+  margin: 10px;
+}
+.loading img {
+  width: 45px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 200px;
+  resize: none;
+  padding: 5px;
+}
+
+.post {
+  padding: 5px 10px;
+  color: #222;
+}
+
+.post:nth-child(odd) {
+  background-color: #777;
+  color: #fff
+}
+
+.post:nth-child(even) {
+  background-color: #D2D2D2;
+}
+
+.postMessage {
+  display: block;
+  white-space: pre-wrap;
+  margin-bottom: 10px;
+}
+
+.btn {
+  padding: 8px 32px;
+  text-decoration: none;
+  margin: 4px 1px;
+  display: inline-block;
+  border:0.16em solid rgba(255,255,255,0);
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight: bold;
+}
+
+.btn.btn-sm {
+  padding: 4px 12px;
+}
+
+.btn:hover {
+  border-color: #fff;
+}
+
+.btn-primary {
+  background-color: darkcyan;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #f14e4e;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: #eea236;
+  color: #fff;
+}
+
+.error:empty {
+  display: none;
+}
+
+.error {
+  margin: 10px 0px;
+  padding: 15px;
+  background-color: #f14e4e;
+  color: #fff;
+}
