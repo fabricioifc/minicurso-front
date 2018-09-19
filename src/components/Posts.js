@@ -5,135 +5,138 @@ import axios from "axios";
 import PostForm from "./PostForm";
 import Post from "./Post";
 
-// Loading GIF
-import loadingImg from "../images/loading.gif";
-
-const base_url = 'https://ifcblog-api.herokuapp.com'
+const base_url = "https://ifcblog-api.herokuapp.com";
 
 class Posts extends React.Component {
-
   constructor() {
-    super()
+    super();
     this.state = {
-      post: {title: '', message: '',loading:false},
+      post: { title: "", message: "", loading: false },
       posts: [],
       editando: false,
       error: null
-    }
+    };
   }
 
   componentDidMount() {
-    this.setState({post: {...this.state.post, loading:true}})
-    axios.get(`${base_url}/posts`)
-    .then(response => {
-      this.setState({
-        posts: response.data, 
-        post: {...this.state.post, loading:false}
+    this.setState({ post: { ...this.state.post, loading: true } });
+    axios
+      .get(`${base_url}/posts`)
+      .then(response => {
+        this.setState({
+          posts: response.data,
+          post: { ...this.state.post, loading: false }
+        });
       })
-    })
-    .catch(error => this._onError(error))
-  } 
+      .catch(error => this._onError(error));
+  }
 
-  save = (post) => {
+  save = post => {
     if (post.id) {
-      this._updatePost(post)
+      this._updatePost(post);
     } else {
-      this._addPost(post)
+      this._addPost(post);
     }
-  }
-  
-  // método privado
-  _addPost = (post) => {
-    this.setState({post: {...this.state.post, loading:true}})
-    axios.post(`${base_url}/posts`, {post: post})
-    .then(response => {
-      this.setState({
-        posts: [...this.state.posts, response.data],
-        post: { loading:false}
-      })
-    })
-    .catch(error => this._onError(error))
-  }
+  };
 
-  _onError = (error) => {
-    this.setState({error: error.message})
+  // método privado
+  _addPost = post => {
+    this.setState({ post: { ...this.state.post, loading: true } });
+    axios
+      .post(`${base_url}/posts`, { post: post })
+      .then(response => {
+        this.setState({
+          posts: [...this.state.posts, response.data],
+          post: { loading: false }
+        });
+      })
+      .catch(error => this._onError(error));
+  };
+
+  _onError = error => {
+    this.setState({ error: error.message });
     console.log(error);
-  }
+  };
 
   // método privado
-  _updatePost = (post) => {
-    this.setState({post: {...this.state.post, loading:true}})
-    axios.put(`${base_url}/posts/${post.id}`, {post: post})
-    .then(response => {
-      const posts = this.state.posts.map(
-        p => p.id === response.data.id ? p = response.data : p
-      )
-      this.setState({
-        posts, editando: false,
-        post: { loading:false}
+  _updatePost = post => {
+    this.setState({ post: { ...this.state.post, loading: true } });
+    axios
+      .put(`${base_url}/posts/${post.id}`, { post: post })
+      .then(response => {
+        const posts = this.state.posts.map(
+          p => (p.id === response.data.id ? (p = response.data) : p)
+        );
+        this.setState({
+          posts,
+          editando: false,
+          post: { loading: false }
+        });
       })
-    })
-    .catch(error => this._onError(error))
-  }
+      .catch(error => this._onError(error));
+  };
 
   editPost(id) {
-    this.setState({post: {...this.state.post, loading:true}})
-    axios.get(`${base_url}/posts/${id}`)
-    .then(response => {
-      this.setState({
-        editando: true,
-        post: {...response.data, loading:false}
-      })      
-    })
-    .catch(error => this._onError(error))
+    this.setState({ post: { ...this.state.post, loading: true } });
+    axios
+      .get(`${base_url}/posts/${id}`)
+      .then(response => {
+        this.setState({
+          editando: true,
+          post: { ...response.data, loading: false }
+        });
+      })
+      .catch(error => this._onError(error));
   }
 
-  removePost = (id) => {
-    this.setState({post: {...this.state.post, loading:true}})
-    axios.delete(`${base_url}/posts/${id}`)
-    .then(response => {
-      console.log(response);
-      const posts = this.state.posts.filter(
-        post => post.id !== id
-      )
-      this.setState({
-        posts, 
-        post: { loading:false}
+  removePost = id => {
+    this.setState({ post: { ...this.state.post, loading: true } });
+    axios
+      .delete(`${base_url}/posts/${id}`)
+      .then(response => {
+        console.log(response);
+        const posts = this.state.posts.filter(post => post.id !== id);
+        this.setState({
+          posts,
+          post: { loading: false }
+        });
       })
-    })
-    .catch(error => this._onError(error))
-  }
+      .catch(error => this._onError(error));
+  };
 
   onCancel = () => {
-    this.setState({post: {title: '', message: ''}, editando: false})
-  }
+    this.setState({ post: { title: "", message: "" }, editando: false });
+  };
 
   render() {
-
     return (
       <div className="main">
-        {this.state.post.loading ? <span className='loading'><img src={loadingImg} alt='loading' /></span> : null}
-        
         <div className="left">
-          <PostForm 
-            post={this.state.post} 
-            onSavePost={this.save} 
+          <PostForm
+            post={this.state.post}
+            onSavePost={this.save}
             editando={this.state.editando}
-            onCancel={this.onCancel} />
+            onCancel={this.onCancel}
+          />
         </div>
-        
+
         <div className="right">
           <div className="error">{this.state.error}</div>
           {/* {this.state.posts.map( post => {
             return (<div className="post" key={post.id}>{post.title}</div>)
           })} */}
-          {this.state.posts.map( post => 
-            <Post key={post.id} post={post} onRemovePost={this.removePost.bind(this)} onEditPost={this.editPost.bind(this)} /> 
-          )}
+          {this.state.posts.map(post => (
+            <Post
+              key={post.id}
+              post={post}
+              onRemovePost={this.removePost.bind(this)}
+              onEditPost={this.editPost.bind(this)}
+            />
+          ))}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Posts
+export default Posts;

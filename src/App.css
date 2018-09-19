@@ -1,51 +1,50 @@
 body {
-	margin:0;
-  padding:0;
-  background: #F8F8F8;
+  margin: 0;
+  padding: 0;
+  background: #f8f8f8;
 }
 
 .container {
-	clear:left;
-	float:left;
-	width:100%;
-  overflow:hidden;
-  background: #F8F8F8; /* column 2 background colour */
+  clear: left;
+  float: left;
+  width: 100%;
+  overflow: hidden;
+  background: #f8f8f8; /* column 2 background colour */
   color: #333;
 }
 
 .main {
-  float:left;
-	width:100%;
-	position: relative;
-  right:70%;
+  float: left;
+  width: 100%;
+  position: relative;
+  right: 70%;
   height: 100%;
-  background:indianred; /* column 1 background colour */
+  background: indianred; /* column 1 background colour */
 }
 
 .left {
-	float:left;
-	width:28%;
-	position:relative;
-	left:71%;
-  overflow:hidden;
+  float: left;
+  width: 28%;
+  position: relative;
+  left: 71%;
+  overflow: hidden;
   color: #f8f8f8;
 }
 
 .right {
-	float:left;
-	width:68%;
-	position:relative;
-	left:73%;
-  overflow:hidden;
+  float: left;
+  width: 68%;
+  position: relative;
+  left: 73%;
+  overflow: hidden;
   padding-top: 10px;
 }
 
 .loading {
   float: right;
-  margin: 10px;
 }
 .loading img {
-  width: 45px;
+  width: 40px;
 }
 
 input {
@@ -69,11 +68,11 @@ textarea {
 
 .post:nth-child(odd) {
   background-color: #777;
-  color: #fff
+  color: #fff;
 }
 
 .post:nth-child(even) {
-  background-color: #D2D2D2;
+  background-color: #d2d2d2;
 }
 
 .postMessage {
@@ -87,9 +86,9 @@ textarea {
   text-decoration: none;
   margin: 4px 1px;
   display: inline-block;
-  border:0.16em solid rgba(255,255,255,0);
+  border: 0.16em solid rgba(255, 255, 255, 0);
   box-sizing: border-box;
-  text-decoration:none;
+  text-decoration: none;
   font-weight: bold;
 }
 
